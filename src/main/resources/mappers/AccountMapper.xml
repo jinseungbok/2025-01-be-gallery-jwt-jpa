@@ -4,9 +4,9 @@
 
     <insert id="save">
         INSERT INTO members
-           SET name = #{name}
-             , login_id = #{loginId}
-             , login_pw = #{loginPw}
+        SET name = #{name}
+        , login_id = #{loginId}
+        , login_pw = #{loginPw}
     </insert>
 
     <select id="findByLoginId">

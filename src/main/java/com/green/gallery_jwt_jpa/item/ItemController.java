@@ -19,7 +19,7 @@ public class ItemController {
 
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestPart MultipartFile img
-                                      , @RequestPart ItemPostReq data) {
+            , @RequestPart ItemPostReq data) {
         log.info("img: {}", img);
         log.info("data: {}", data);
         int result = itemService.save(img, data);
