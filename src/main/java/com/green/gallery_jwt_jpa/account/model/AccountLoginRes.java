@@ -14,4 +14,5 @@ public class AccountLoginRes {
     private String loginPw;
     @JsonIgnore
     private JwtUser jwtUser;
+    private String name;
 }
