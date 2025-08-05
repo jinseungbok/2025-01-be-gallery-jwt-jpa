@@ -35,9 +35,9 @@ public class WebSecurityConfiguration {
                 // 세션을 이용한 공격이다. 세션을 어차피 안 쓰니까 비활성화
                 .cors(corsConfigurer -> corsConfigurer.configurationSource(corsConfigurationSource())) // ⭐️⭐️⭐️
                 .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/cart").authenticated()
-                        .requestMatchers("/api/v1/order").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/item").hasRole("USER_2")
-                        .anyRequest().permitAll()
+                                                                              .requestMatchers("/api/v1/order").authenticated()
+                                                                              .requestMatchers(HttpMethod.POST, "/api/v1/item").hasRole("USER_2")
+                                                                              .anyRequest().permitAll()
                 )
 
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

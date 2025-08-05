@@ -22,7 +22,7 @@ public class ItemService {
 
     public int save(MultipartFile img, ItemPostReq req) {
         String savedFileName = myFileUtils.makeRandomFileName(img); //저장할 파일명
-        req.setImgPath(savedFileName);
+        //req.setImgPath(savedFileName);
 
         Items item = new Items();
         item.setImgPath(savedFileName);
@@ -34,7 +34,7 @@ public class ItemService {
 
         // int result = itemMapper.save(req);
 
-        String directoryPath = String.format("/item/%d", req.getId());
+        String directoryPath = String.format("/item/%d", item.getId());
         myFileUtils.makeFolders(directoryPath);
 
         String savedPathFileName = directoryPath + "/" + savedFileName;
