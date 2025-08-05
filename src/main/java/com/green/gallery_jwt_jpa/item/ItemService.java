@@ -23,7 +23,16 @@ public class ItemService {
     public int save(MultipartFile img, ItemPostReq req) {
         String savedFileName = myFileUtils.makeRandomFileName(img); //저장할 파일명
         req.setImgPath(savedFileName);
-        int result = itemMapper.save(req);
+
+        Items item = new Items();
+        item.setImgPath(savedFileName);
+        item.setName(req.getName());
+        item.setPrice(req.getPrice());
+        item.setDiscountPer(req.getDiscountPer());
+
+        itemRepository.save(item);
+
+        // int result = itemMapper.save(req);
 
         String directoryPath = String.format("/item/%d", req.getId());
         myFileUtils.makeFolders(directoryPath);
@@ -35,14 +44,13 @@ public class ItemService {
             e.printStackTrace();
             return 0;
         }
-
         return 1;
     }
 
     public List<ItemGetRes> findAll(List<Long> ids) {
         log.info("ids: {}", ids);
         List<Items> list = null;
-        if(ids == null && ids.isEmpty()) {
+        if(ids == null || ids.isEmpty()) {
             list = itemRepository.findAll();
         } else {
             list = itemRepository.findAllByIdIn(ids);
