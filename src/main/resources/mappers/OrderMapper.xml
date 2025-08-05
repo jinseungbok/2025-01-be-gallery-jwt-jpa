@@ -11,6 +11,7 @@
              <if test=" cardNumber != null and cardNumber != '' ">
                 , card_number = #{cardNumber}
              </if>
+             , created = NOW()
     </insert>
 
     <select id="findAllByMemberIdOrderByIdDesc">

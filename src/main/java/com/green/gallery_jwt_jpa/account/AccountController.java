@@ -15,9 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -33,9 +30,8 @@ public class AccountController {
                 || !StringUtils.hasLength(req.getLoginPw())) {
             return ResponseEntity.badRequest().build(); //state: 400
         }
-
-        int result = accountService.join(req);
-        return ResponseEntity.ok(result); //state: 200
+        accountService.join(req);
+        return ResponseEntity.ok(1); //state: 200
     }
 
     @PostMapping("/login")

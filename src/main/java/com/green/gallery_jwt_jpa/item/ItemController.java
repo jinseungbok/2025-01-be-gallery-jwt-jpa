@@ -19,7 +19,7 @@ public class ItemController {
 
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestPart MultipartFile img
-            , @RequestPart ItemPostReq data) {
+                                      , @RequestPart ItemPostReq data) {
         log.info("img: {}", img);
         log.info("data: {}", data);
         int result = itemService.save(img, data);
@@ -27,7 +27,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public ResponseEntity<?> readAll(@RequestParam(name = "id", required = false) ArrayList<Integer> ids) {
+    public ResponseEntity<?> readAll(@RequestParam(name = "id", required = false) ArrayList<Long> ids) {
         log.info("ids: {}", ids);
         List<ItemGetRes> items = itemService.findAll(ids);
         return ResponseEntity.ok(items);

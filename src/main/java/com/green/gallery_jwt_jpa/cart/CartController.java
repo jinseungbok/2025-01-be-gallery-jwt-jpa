@@ -26,8 +26,8 @@ public class CartController {
     public ResponseEntity<?> save(@AuthenticationPrincipal UserPrincipal userPrincipal, HttpServletRequest httpReq, @RequestBody CartPostReq req) {
         log.info("req: {}", req);
         req.setMemberId(userPrincipal.getMemberId());
-        int result = cartService.save(req);
-        return ResponseEntity.ok(result);
+        cartService.save(req);
+        return ResponseEntity.ok(1);
     }
 
     @GetMapping
@@ -46,7 +46,7 @@ public class CartController {
 
     @DeleteMapping
     public ResponseEntity<?> deleteMemberCart(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-        int logginedMemberId = userPrincipal.getMemberId();
+        long logginedMemberId = userPrincipal.getMemberId();
         int result = cartService.removeAll(logginedMemberId);
         return ResponseEntity.ok(result);
     }
